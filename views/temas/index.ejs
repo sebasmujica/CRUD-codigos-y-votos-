@@ -1,0 +1,26 @@
+<%- include("../layout", { body: `
+    <form class="fila" method="post" action="/temas">
+      <input name="tema" placeholder="Nuevo tema..." required />
+      <button>Crear</button>
+    </form>
+  
+    <ul>
+      ${temas.map(t => `
+        <li>
+          <a href="/temas/${t.id}">${t.tema}</a>
+          — Votos: <b>${t.votos}</b>
+          <form method="post" action="/temas/${t.id}/votar">
+            <input type="hidden" name="dir" value="up"/>
+            <input type="hidden" name="back" value="lista"/>
+            <button>👍</button>
+          </form>
+          <form method="post" action="/temas/${t.id}/votar">
+            <input type="hidden" name="dir" value="down"/>
+            <input type="hidden" name="back" value="lista"/>
+            <button>👎</button>
+          </form>
+        </li>
+      `).join("")}
+    </ul>
+  ` }) %>
+  

@@ -1,0 +1,54 @@
+<%- include("../layout", { body: `
+    <a href="/temas">&larr; Volver</a>
+    <h2>${t.tema}</h2>
+  
+    <div class="fila">
+      Votos: <b>${t.votos}</b>
+      <form method="post" action="/temas/${t.id}/votar">
+        <input type="hidden" name="dir" value="up"/>
+        <button>👍</button>
+      </form>
+      <form method="post" action="/temas/${t.id}/votar">
+        <input type="hidden" name="dir" value="down"/>
+        <button>👎</button>
+      </form>
+    </div>
+  
+    <h3>Editar tema</h3>
+    <form class="fila" method="post" action="/temas/${t.id}/editar">
+      <input name="tema" value="${t.tema}" required />
+      <button>Guardar</button>
+    </form>
+  
+    <h3>Enlaces</h3>
+    <form class="fila" method="post" action="/temas/${t.id}/enlaces">
+      <input name="titulo" placeholder="Título" required />
+      <input name="url" placeholder="https://..." required />
+      <button>Agregar</button>
+    </form>
+  
+    <ul>
+      ${enlaces.map(e => `
+        <li>
+          <a href="${e.url}" target="_blank" rel="noopener">${e.titulo}</a>
+          — Votos: <b>${e.votos}</b>
+          <form method="post" action="/temas/${t.id}/enlaces/${e.id}/votar">
+            <input type="hidden" name="dir" value="up"/>
+            <button>👍</button>
+          </form>
+          <form method="post" action="/temas/${t.id}/enlaces/${e.id}/votar">
+            <input type="hidden" name="dir" value="down"/>
+            <button>👎</button>
+          </form>
+          <form method="post" action="/temas/${t.id}/enlaces/${e.id}/borrar">
+            <button>Eliminar</button>
+          </form>
+        </li>
+      `).join("")}
+    </ul>
+  
+    <form method="post" action="/temas/${t.id}/borrar" style="margin-top:12px">
+      <button>Eliminar tema</button>
+    </form>
+  ` }) %>
+  
