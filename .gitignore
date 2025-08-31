@@ -27,3 +27,8 @@ Thumbs.db
 # Carpeta de compilación si usas TypeScript o Babel
 dist/
 build/
+
+#Base de datos
+*.db
+
+package-lock.json
