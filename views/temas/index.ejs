@@ -11,12 +11,12 @@
           — Votos: <b>${t.votos}</b>
           <form method="post" action="/temas/${t.id}/votar">
             <input type="hidden" name="dir" value="up"/>
-            <input type="hidden" name="back" value="lista"/>
+
             <button>👍</button>
           </form>
           <form method="post" action="/temas/${t.id}/votar">
             <input type="hidden" name="dir" value="down"/>
-            <input type="hidden" name="back" value="lista"/>
+
             <button>👎</button>
           </form>
         </li>
